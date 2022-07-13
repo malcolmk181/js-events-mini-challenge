@@ -45,8 +45,10 @@ Try calling it a few times to see the color switch back and forth.
 Once you have it working in the console, write an event listener that will use this helper function to change the color of the header when a user clicks on it.
 
 **YOUR NOTES**
-```
-
+```js
+header.addEventListener("click", function(event) {
+    toggleColor(header);
+});
 ```
 
 ## Deliverable 2: Like Button
@@ -54,8 +56,12 @@ Once you have it working in the console, write an event listener that will use t
 **When a user clicks the like button for Raffy's profile picture**, Raffy's likes should increase by 1. The likes won't persist (if you refresh the page, they'll reset to their original value) - we'll add persistence in a future challenge.
 
 **YOUR NOTES**
-```
-
+```js
+const like = document.querySelector(".like-button");
+like.addEventListener("click", function(event) {
+    const likes = document.querySelector(".likes");
+    likes.textContent = (parseInt(likes.textContent) + 1).toString() + " Likes";
+});
 ```
 
 ## Deliverable 3: Add a New Animal Sighting Post
@@ -80,7 +86,18 @@ Some things to keep in mind:
 - Once you have access to an input field, you still need to retrieve its *value* to see what the user entered in the form!
 
 **YOUR NOTES**
-```
-
+```js
+const form = document.querySelector("#new-animal-sighting-form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const newAnimalSighting = {
+        id: 69420,
+        species: form.elements.species.value,
+        description: form.elements.description.value,
+        link: form.elements.link.value,
+        photo: form.elements.photo.value
+    }
+    renderAnimalSightingPost(newAnimalSighting)
+});
 ```
 
